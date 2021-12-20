@@ -42,29 +42,11 @@ const Header = (props) => {
             </li>
             <li className="nav-item">
               <NavLink
-                to="/event"
-                activeClassName="active"
-                className="nav-link"
-              >
-                EventHandling
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
                 to="/signup"
                 activeClassName="active"
                 className="nav-link"
               >
                 Sign Up
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                to="/manageusers"
-                activeClassName="active"
-                className="nav-link"
-              >
-                Manage Users
               </NavLink>
             </li>
             <li className="nav-item">

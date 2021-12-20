@@ -33,7 +33,7 @@ const Login = () => {
       },
     };
 
-    fetch(url + "/user/check-login", reqOpt)
+    fetch(url + "/user/backendlogin", reqOpt)
       .then((res) => {
         console.log(res.status);
         if (res.status === 200) {
