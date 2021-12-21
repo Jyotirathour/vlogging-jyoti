@@ -5,6 +5,7 @@ const cors = require("cors");
 const port = 5000;
 
 const userRouter = require("./routers/userRouter");
+const vlogRouter = require("./routers/vlogRouter");
 const utilRouter = require("./routers/utils");
 
 app.use(cors({ origin: ["http://localhost:3000"] }));
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use(express.static("./uploads"));
 
 app.use("/user", userRouter);
+app.use("/vlog", vlogRouter);
 app.use("/util", utilRouter);
 
 app.listen(port, () => {

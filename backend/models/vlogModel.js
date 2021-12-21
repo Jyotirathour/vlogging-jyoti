@@ -9,6 +9,6 @@ const schema = new mongoose.Schema({
   created: { type: Date, default: new Date() },
 });
 
-const model = mongoose.model("users", schema);
+const model = mongoose.model("vlogs", schema);
 
 module.exports = model;

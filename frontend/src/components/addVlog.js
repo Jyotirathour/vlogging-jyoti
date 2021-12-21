@@ -38,7 +38,7 @@ const AddVlog = () => {
       },
     };
 
-    fetch(url + "/user/add", reqOpt)
+    fetch(url + "/vlog/add", reqOpt)
       .then((res) => {
         console.log(res.status);
         return res.json();
