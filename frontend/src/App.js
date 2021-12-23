@@ -32,6 +32,7 @@ function App() {
           <Route element={<Signup />} path="/signup" />
           <Route element={<AddVlog />} path="/addvlog" />
           <Route element={<ListVlogs />} path="/list" />
+          <Route element={<ListVlogs />} path="/view/:id" />
           <Route path="/" element={<Navigate replace to="/home" />} />
         </Routes>
       </BrowserRouter>
