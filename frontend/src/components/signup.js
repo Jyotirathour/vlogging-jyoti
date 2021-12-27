@@ -46,6 +46,8 @@ const Signup = () => {
           icon: "success",
           title: "Success",
           text: "You have registered successfully!",
+        }).then(() => {
+          window.location.replace("/login");
         });
       });
   };
@@ -92,7 +94,6 @@ const Signup = () => {
                     className="w-100 mt-5"
                     variant="contained"
                     color="secondary"
-                    startIcon={<GoogleIcon />}
                   >
                     Register to Continue
                   </Button>

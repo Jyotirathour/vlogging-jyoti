@@ -8,6 +8,7 @@ import Login from "./components/login";
 import Signup from "./components/signup";
 import AddVlog from "./components/addVlog";
 import ListVlogs from "./components/listVlogs";
+import ViewVlog from "./components/viewVlog";
 
 function App() {
   const [darkTheme, setDarkTheme] = useState(false);
@@ -32,7 +33,7 @@ function App() {
           <Route element={<Signup />} path="/signup" />
           <Route element={<AddVlog />} path="/addvlog" />
           <Route element={<ListVlogs />} path="/list" />
-          <Route element={<ListVlogs />} path="/view/:id" />
+          <Route element={<ViewVlog />} path="/view/:id" />
           <Route path="/" element={<Navigate replace to="/home" />} />
         </Routes>
       </BrowserRouter>

@@ -50,7 +50,6 @@ const Header = (props) => {
               </NavLink>
             </li>
 
-
             <li className="nav-item">
               <NavLink
                 to="/addvlog"
@@ -61,18 +60,11 @@ const Header = (props) => {
               </NavLink>
             </li>
 
-
             <li className="nav-item">
-              <NavLink
-                to="/list"
-                activeClassName="active"
-                className="nav-link"
-              >
+              <NavLink to="/list" activeClassName="active" className="nav-link">
                 List
               </NavLink>
             </li>
-
-
 
             <li className="nav-item">
               <Switch
@@ -83,17 +75,6 @@ const Header = (props) => {
               />
             </li>
           </ul>
-          <form className="d-flex">
-            <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button className="btn btn-outline-success" type="submit">
-              Search
-            </button>
-          </form>
         </div>
       </div>
     </nav>
