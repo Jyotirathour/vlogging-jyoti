@@ -41,6 +41,8 @@ const Login = () => {
             icon: "success",
             title: "Success",
             text: "You have loggdin successfully!",
+          }).then(() => {
+            window.location.replace("/addvlog");
           });
         } else if (res.status === 300) {
           Swal.fire({
@@ -84,14 +86,13 @@ const Login = () => {
                     value={values.password}
                     onChange={handleChange}
                   />
-            
+
                   <Button
                     type="submit"
                     className="w-100 mt-5"
                     variant="contained"
                     color="primary"
                   >
-              
                     Login to Continue
                   </Button>
                 </form>

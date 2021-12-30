@@ -1,4 +1,4 @@
-import { Container } from "@mui/material";
+import { Card, CardContent, CardMedia, Container } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import app_config from "../config";
@@ -37,7 +37,16 @@ const ViewVlog = () => {
 
   return (
     <div>
-      <Container>{displayVlog()}</Container>
+      <Container>
+        <Card>
+          <CardContent>
+            {displayVlog()}
+            <h1>{vlogDetail.title}</h1>
+            <h5>{vlogDetail.category}</h5>
+            <p>{new Date(vlogDetail.created).toLocaleDateString()}</p>
+          </CardContent>
+        </Card>
+      </Container>
     </div>
   );
 };
