@@ -78,11 +78,12 @@ const AddVlog = () => {
 
   return (
     <div className="signup-bg">
-      <h1 className="text-center">Signup Here</h1>
-      <hr />
+     
       <div className="col-md-4 mx-auto">
-        <Card>
+        <Card className="mt-5">
           <CardContent>
+          <h1 className="text-center">Create account</h1>
+           <hr />
             <Formik initialValues={vlogForm} onSubmit={vlogSubmit}>
               {({ values, handleSubmit, handleChange }) => (
                 <form onSubmit={handleSubmit}>
@@ -123,7 +124,6 @@ const AddVlog = () => {
                     className="w-100 mt-5"
                     variant="contained"
                     color="secondary"
-                    startIcon={<GoogleIcon />}
                   >
                     Register to Continue
                   </Button>

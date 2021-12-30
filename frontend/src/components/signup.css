@@ -4,7 +4,8 @@
 }
 
 body {
-  background-color: rgb(190, 190, 190);
+  background: url("https://dm0qx8t0i9gc9.cloudfront.net/thumbnails/image/rDtN98Qoishumwih/beach-summer-background-abstract-background-wallpaper-use-for-presentation_rPTI0gu2zl_thumb.jpg");
+
 }
 
 .social-icon {
@@ -18,8 +19,10 @@ body {
   /* background: url(signup-bg.png) center; */
   background-size: cover;
   min-height: 300px;
+
 }
 
 .my-form {
   padding: 2rem;
+
 }

@@ -54,11 +54,12 @@ const Signup = () => {
 
   return (
     <div className="signup-bg">
-      <h1 className="text-center">Signup Here</h1>
-      <hr />
+     
       <div className="col-md-4 mx-auto">
-        <Card>
+        <Card className="mt-5">
           <CardContent>
+          <h1 className="text-center">Signup Here</h1>
+           <hr />
             <Formik initialValues={signupForm} onSubmit={SignupSubmit}>
               {({ values, handleSubmit, handleChange }) => (
                 <form onSubmit={handleSubmit}>
@@ -89,6 +90,7 @@ const Signup = () => {
                     value={values.password}
                     onChange={handleChange}
                   />
+                   <a href="login.js"target = "login.js"> alredy have an account</a>
                   <Button
                     type="submit"
                     className="w-100 mt-5"
