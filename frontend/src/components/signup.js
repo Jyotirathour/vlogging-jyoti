@@ -1,6 +1,7 @@
 import { Formik } from "formik";
 import { Button, Card, CardContent } from "@mui/material";
 import GoogleIcon from "@mui/icons-material/Google";
+import { Link } from 'react-router-dom';
 
 import "./signup.css";
 import app_config from "../config";
@@ -90,7 +91,10 @@ const Signup = () => {
                     value={values.password}
                     onChange={handleChange}
                   />
-                   <a href="login.js"target = "login.js"> alredy have an account</a>
+                  <p><input type="checkbox"></input>I agree with <Link to='/'>Terms</Link>and<Link to='/'>Condition</Link></p>
+
+                   <a href="login.js"target = "login.js"> Already have an account?</a>
+                   
                   <Button
                     type="submit"
                     className="w-100 mt-5"
@@ -99,6 +103,8 @@ const Signup = () => {
                   >
                     Register to Continue
                   </Button>
+                  <hr></hr>
+                 
                 </form>
               )}
             </Formik>

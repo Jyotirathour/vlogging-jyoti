@@ -42,14 +42,10 @@ const ListVLogs = () => {
                 <CardContent>
                   <h4>{vlog.title}</h4>
                   <p>{vlog.category}</p>
-                  <Link
-                    to={"/view/" + vlog._id}
-                    component={Button}
-                    variant="contained"
-                    color="primary"
-                  >
-                    View Full Vlog
-                  </Link>
+                  <Button variant="contained" 
+                  size="small" href="/view/+vlog._id">
+                   View full vlog
+                </Button>
                 </CardContent>
               </Card>
             </Grid>
