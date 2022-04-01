@@ -10,6 +10,7 @@ import AddVlog from "./components/addVlog";
 import ListVlogs from "./components/listVlogs";
 import ViewVlog from "./components/viewVlog";
 import Managevlog from "./components/managevlogs";
+import Video from "./components/video";
 
 function App() {
   const [darkTheme, setDarkTheme] = useState(false);
@@ -36,6 +37,7 @@ function App() {
           <Route element={<ListVlogs />} path="/list" />
           <Route element={<ViewVlog />} path="/view/:id" />
           <Route element={<Managevlog />} path="/managevlog" />
+          <Route element={<Video />} path="/video" />
           <Route path="/" element={<Navigate replace to="/home" />} />
         </Routes>
       </BrowserRouter>
