@@ -8,7 +8,7 @@ import {
   Paper,
 } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import app_config from "../config";
 
 const ListVLogs = () => {
@@ -16,6 +16,8 @@ const ListVLogs = () => {
 
   const [vlogData, setVlogData] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const navigate = useNavigate();
 
   const fetchVlogs = () => {
     fetch(url + "/vlog/getall")
@@ -42,10 +44,13 @@ const ListVLogs = () => {
                 <CardContent>
                   <h4>{vlog.title}</h4>
                   <p>{vlog.category}</p>
-                  <Button variant="contained" 
-                  size="small" href="/view/+vlog._id">
-                   View full vlog
-                </Button>
+                  <Button
+                    variant="contained"
+                    size="small"
+                    onClick={navigate("/view/" + vlog._id)}
+                  >
+                    View full vlog
+                  </Button>
                 </CardContent>
               </Card>
             </Grid>

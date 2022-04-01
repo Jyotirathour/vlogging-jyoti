@@ -5,10 +5,28 @@ import GoogleIcon from "@mui/icons-material/Google";
 import "./signup.css";
 import app_config from "../config";
 import Swal from "sweetalert2";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AddVlog = () => {
   const url = app_config.api_url;
+  const [thumbnail, setThumbnail] = useState("");
+  const [video, setVideo] = useState("");
+
+  const navigate = useNavigate();
+
+  const [currentUser, setCurrentUser] = useState(
+    JSON.parse(sessionStorage.getItem("user"))
+  );
+
+  useEffect(() => {
+    if (!currentUser) {
+      Swal.fire({
+        icon: "error",
+        text: "You need to Login First",
+      }).then(() => navigate("/login"));
+    }
+  }, []);
 
   // Two important thing to use with Formik
   // 1. formObject
@@ -17,11 +35,9 @@ const AddVlog = () => {
     file: "",
     thumbnail: "",
     category: "",
-    author: JSON.parse(sessionStorage.getItem("user")),
+    description: "",
+    author: currentUser._id,
   };
-
-  const [thumbnail, setThumbnail] = useState("");
-  const [video, setVideo] = useState("");
 
   // 2. submit callback function
   const vlogSubmit = (formdata) => {
@@ -49,7 +65,9 @@ const AddVlog = () => {
         Swal.fire({
           icon: "success",
           title: "Success",
-          text: "You have registered successfully!",
+          text: "Your blog has been added successfully!",
+        }).then(() => {
+          navigate("/managevlog");
         });
       });
   };
@@ -78,12 +96,11 @@ const AddVlog = () => {
 
   return (
     <div className="signup-bg">
-     
       <div className="col-md-4 mx-auto">
         <Card className="mt-5">
           <CardContent>
-          <h1 className="text-center">Create account</h1>
-           <hr />
+            <h2 className="text-center">Add Your New Vlog</h2>
+            <hr />
             <Formik initialValues={vlogForm} onSubmit={vlogSubmit}>
               {({ values, handleSubmit, handleChange }) => (
                 <form onSubmit={handleSubmit}>
@@ -102,6 +119,15 @@ const AddVlog = () => {
                     className="form-control"
                     id="category"
                     value={values.category}
+                    onChange={handleChange}
+                  />
+
+                  <label className="mt-3">Description</label>
+                  <textarea
+                    placeholder="write vlog description here..."
+                    className="form-control"
+                    id="description"
+                    value={values.description}
                     onChange={handleChange}
                   />
 

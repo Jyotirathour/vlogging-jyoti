@@ -4,6 +4,7 @@ const schema = new mongoose.Schema({
   title: String,
   file: String,
   thumbnail: String,
+  description: String,
   category: String,
   author: { type: mongoose.Types.ObjectId, ref: "users" },
   created: { type: Date, default: new Date() },
