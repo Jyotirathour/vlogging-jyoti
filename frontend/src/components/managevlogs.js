@@ -6,10 +6,13 @@ import { Button } from "@mui/material";
 const Managevlog = () => {
   const [vlogArray, setVlogArray] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [currentUser, setCurrentUser] = useState(
+    JSON.parse(sessionStorage.getItem("user"))
+  );
   const url = app_config.api_url;
 
   const fetchVlogs = () => {
-    fetch(url + "/vlog/getall")
+    fetch(url + "/vlog/getbyuser/" + currentUser._id)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -42,8 +45,8 @@ const Managevlog = () => {
       return vlogArray.map((vlog) => (
         <tr>
           <td>{vlog.title}</td>
+          <td>{vlog.category}</td>
           <td>{vlog.description}</td>
-          <td>{vlog.tags}</td>
           <td>{vlog.created}</td>
           <td>
             <Button
@@ -60,14 +63,15 @@ const Managevlog = () => {
   };
 
   return (
-    <div>
-      <h1>Managevlog</h1>
-      <table className="table table-dark">
+    <div className="container">
+      <h1 className="text-center">Manage your Vlogs</h1>
+      <hr />
+      <table className="table table-light mt-5">
         <thead>
           <tr>
             <th>Title</th>
-            <th>Description</th>
             <th>Category</th>
+            <th>Description</th>
             <th>Uploaded on</th>
             <th></th>
           </tr>

@@ -42,8 +42,12 @@ const ViewVlog = () => {
           <CardContent>
             {displayVlog()}
             <h1>{vlogDetail.title}</h1>
-            <h5>{vlogDetail.category}</h5>
-            <p>{new Date(vlogDetail.created).toLocaleDateString()}</p>
+            <span>
+              added on {new Date(vlogDetail.created).toLocaleDateString()}
+            </span>
+            <h5 className="text-muted">in {vlogDetail.category}</h5>
+            <hr />
+            <p>{vlogDetail.description}</p>
           </CardContent>
         </Card>
       </Container>
