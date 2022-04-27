@@ -1,5 +1,5 @@
 import { Formik } from "formik";
-import { Button, Card, CardContent } from "@mui/material";
+import { Button, Card, CardContent, Container, TextField } from "@mui/material";
 import GoogleIcon from "@mui/icons-material/Google";
 
 import "./login.css";
@@ -62,52 +62,57 @@ const Login = () => {
   };
 
   return (
-    <div className="login-bg">
-      <div className="col-md-3 mx-auto">
-        <Card className="mt-5">
+    <div style={{ background: "#ccc" }}>
+      <Container
+        maxWidth="xs"
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "90vh",
+        }}
+      >
+        <Card>
           <CardContent>
-            <h1 className="text-center">Signin Here</h1>
-            <hr />
+            <p className="text-center h3 mb-5 mt-5">Login Here</p>
+
             <Formik initialValues={loginForm} onSubmit={LoginSubmit}>
               {({ values, handleSubmit, handleChange }) => (
                 <form onSubmit={handleSubmit}>
-                  <label className="mt-3">Email</label>
-                  <input
-                    placeholder="email"
-                    className="form-control"
+                  <TextField
+                    color="secondary"
+                    label="Email"
+                    type="email"
+                    variant="filled"
+                    className="w-100 mb-4"
+                    helperText="Enter Your Email ID"
                     id="email"
+                    onChange={handleChange}
                     value={values.email}
-                    onChange={handleChange}
                   />
-
-                  <label className="mt-3">Password</label>
-                  <input
+                  <TextField
+                    label="Password"
                     type="password"
-                    placeholder="password"
-                    className="form-control"
+                    variant="filled"
+                    className="w-100 mb-4"
                     id="password"
-                    value={values.password}
                     onChange={handleChange}
+                    value={values.password}
                   />
-
                   <Button
                     type="submit"
-                    className="w-100 mt-5"
+                    sx={{ background: "blue" }}
+                    className="mt-5 w-100"
                     variant="contained"
-                    color="primary"
                   >
-                    Login to Continue
+                    Login Now
                   </Button>
-                  <hr />
-                  <Link to="/signup" className="text-center">
-                    Register Now
-                  </Link>
                 </form>
               )}
             </Formik>
           </CardContent>
         </Card>
-      </div>
+      </Container>
     </div>
   );
 };

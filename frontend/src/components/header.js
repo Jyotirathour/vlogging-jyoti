@@ -71,6 +71,16 @@ const Header = (props) => {
             </li>
 
             <li className="nav-item">
+              <NavLink
+                to="/video"
+                activeClassName="active"
+                className="nav-link"
+              >
+                Video
+              </NavLink>
+            </li>
+
+            <li className="nav-item">
               <NavLink to="/list" activeClassName="active" className="nav-link">
                 List
               </NavLink>
