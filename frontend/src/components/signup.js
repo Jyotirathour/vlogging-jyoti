@@ -103,7 +103,8 @@ const Signup = () => {
                   >
                     Register to Continue
                   </Button>
-                  <hr></hr>
+                  <hr/>
+                  <Link to="/login">Lgin Now</Link>
                  
                 </form>
               )}

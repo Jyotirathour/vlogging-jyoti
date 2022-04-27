@@ -47,7 +47,7 @@ const ListVLogs = () => {
                   <Button
                     variant="contained"
                     size="small"
-                    onClick={navigate("/view/" + vlog._id)}
+                    onClick={(e) => navigate("/view/" + vlog._id)}
                   >
                     View full vlog
                   </Button>

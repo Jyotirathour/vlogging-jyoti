@@ -96,7 +96,7 @@ const AddVlog = () => {
 
   return (
     <div className="signup-bg">
-      <div className="col-md-4 mx-auto">
+      <div className="col-md-6 mx-auto">
         <Card className="mt-5">
           <CardContent>
             <h2 className="text-center">Add Your New Vlog</h2>
@@ -120,7 +120,21 @@ const AddVlog = () => {
                     id="category"
                     value={values.category}
                     onChange={handleChange}
+                    list="cate"
                   />
+                  <datalist id="cate">
+                    {[
+                      "Beauty",
+                      "Travel",
+                      "Gaming",
+                      "Technology",
+                      "Health & Fitness",
+                      "Cooking",
+                      "Lifestyle",
+                    ].map((op) => (
+                      <option value={op} />
+                    ))}
+                  </datalist>
 
                   <label className="mt-3">Description</label>
                   <textarea
@@ -129,6 +143,7 @@ const AddVlog = () => {
                     id="description"
                     value={values.description}
                     onChange={handleChange}
+                    rows="5"
                   />
 
                   <label>Upload Thumbnail</label>

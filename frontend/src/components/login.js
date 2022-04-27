@@ -5,9 +5,11 @@ import GoogleIcon from "@mui/icons-material/Google";
 import "./login.css";
 import app_config from "../config";
 import Swal from "sweetalert2";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const url = app_config.api_url;
+  const navigate = useNavigate();
 
   // Two important thing to use with Formik
   // 1. formObject
@@ -42,7 +44,7 @@ const Login = () => {
             title: "Success",
             text: "You have loggdin successfully!",
           }).then(() => {
-            window.location.replace("/addvlog");
+            navigate("/addvlog");
           });
         } else if (res.status === 300) {
           Swal.fire({
@@ -96,6 +98,10 @@ const Login = () => {
                   >
                     Login to Continue
                   </Button>
+                  <hr />
+                  <Link to="/signup" className="text-center">
+                    Register Now
+                  </Link>
                 </form>
               )}
             </Formik>

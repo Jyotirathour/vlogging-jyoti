@@ -27,7 +27,7 @@ const ViewVlog = () => {
     if (!loading) {
       return (
         <video
-          className="img-fluid"
+          className="w-100"
           src={url + "/" + vlogDetail.file}
           controls
         ></video>

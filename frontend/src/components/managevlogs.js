@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import app_config from "../config";
 import Swal from "sweetalert2";
-import { Button } from "@mui/material";
+import { Box, Button, Card, CardContent, Modal } from "@mui/material";
+import { Delete, Edit } from "@mui/icons-material";
+import { Formik } from "formik";
 
 const Managevlog = () => {
   const [vlogArray, setVlogArray] = useState([]);
@@ -10,6 +12,9 @@ const Managevlog = () => {
     JSON.parse(sessionStorage.getItem("user"))
   );
   const url = app_config.api_url;
+  const [vlogForm, setVlogForm] = useState({});
+
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
 
   const fetchVlogs = () => {
     fetch(url + "/vlog/getbyuser/" + currentUser._id)
@@ -40,13 +45,23 @@ const Managevlog = () => {
       });
   };
 
+  const truncate = (str) => {
+    return str.length > 20 ? str.substring(0, 20) + "..." : str;
+  };
+
+  const updateVlog = (formdata) => {
+    console.log(formdata);
+    setVlogForm(formdata);
+    setShowUpdateModal(true);
+  };
+
   const displayVlogs = () => {
     if (!loading) {
       return vlogArray.map((vlog) => (
         <tr>
           <td>{vlog.title}</td>
           <td>{vlog.category}</td>
-          <td>{vlog.description}</td>
+          <td>{truncate(vlog.description)}</td>
           <td>{vlog.created}</td>
           <td>
             <Button
@@ -54,11 +69,110 @@ const Managevlog = () => {
               color="error"
               variant="contained"
             >
-              <i class="fas fa-trash-alt"></i>
+              <Delete />
+            </Button>
+          </td>
+          <td>
+            <Button
+              onClick={(e) => updateVlog(vlog)}
+              color="primary"
+              variant="contained"
+            >
+              <Edit />
             </Button>
           </td>
         </tr>
       ));
+    }
+  };
+
+  const vlogSubmit = (formdata) => {
+    console.log(formdata);
+    fetch(url + "/vlog/update/" + formdata._id, {
+      method: "PUT",
+      body: JSON.stringify(formdata),
+      headers: {
+        "Content-type": "application/json",
+      },
+    }).then((res) => {
+      console.log(res.status);
+      fetchVlogs();
+    });
+  };
+
+  const updateForm = () => {
+    if (showUpdateModal) {
+      return (
+        <Card>
+          <CardContent>
+            <h3>Update Your Vlog</h3>
+            <hr />
+            <Formik initialValues={vlogForm} onSubmit={vlogSubmit}>
+              {({ values, handleSubmit, handleChange }) => (
+                <form onSubmit={handleSubmit}>
+                  <label className="mt-3">Title</label>
+                  <input
+                    placeholder="title"
+                    className="form-control"
+                    id="title"
+                    value={values.title}
+                    onChange={handleChange}
+                  />
+
+                  <label className="mt-3">Category</label>
+                  <input
+                    placeholder="category"
+                    className="form-control"
+                    id="category"
+                    value={values.category}
+                    onChange={handleChange}
+                    list="cate"
+                  />
+                  <datalist id="cate">
+                    {[
+                      "Beauty",
+                      "Travel",
+                      "Gaming",
+                      "Technology",
+                      "Health & Fitness",
+                      "Cooking",
+                      "Lifestyle",
+                    ].map((op) => (
+                      <option value={op} />
+                    ))}
+                  </datalist>
+
+                  <label className="mt-3">Description</label>
+                  <textarea
+                    placeholder="write vlog description here..."
+                    className="form-control"
+                    id="description"
+                    value={values.description}
+                    onChange={handleChange}
+                    rows="5"
+                  />
+
+                  {/* <label>Upload Thumbnail</label>
+                  <input
+                    type="file"
+                    className="form-control"
+                    onChange={uploadThumbnail}
+                  /> */}
+
+                  <Button
+                    type="submit"
+                    className="w-100 mt-5"
+                    variant="contained"
+                    color="secondary"
+                  >
+                    Update Vlog
+                  </Button>
+                </form>
+              )}
+            </Formik>
+          </CardContent>
+        </Card>
+      );
     }
   };
 
@@ -74,11 +188,14 @@ const Managevlog = () => {
             <th>Description</th>
             <th>Uploaded on</th>
             <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>{displayVlogs()}</tbody>
       </table>
+      {updateForm()}
     </div>
   );
 };
+
 export default Managevlog;
